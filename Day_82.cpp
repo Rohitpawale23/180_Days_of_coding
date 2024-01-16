@@ -1,5 +1,5 @@
 
-//  ******* DAY 82 - MERGE SORT ALGORITHM **********
+//  ******* DAY 82 - MERGE SORT ALGORITHM  **********
 
 #include <iostream>
 #include <vector>
