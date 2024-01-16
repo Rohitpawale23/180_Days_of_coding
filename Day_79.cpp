@@ -1,132 +1,124 @@
 
-// ***DAY 79 - Recursion in stings **** 
+// ***DAY 79 - Recursion in stings ****
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-bool checkpall(string str , int s , int e)
+bool checkpall(string str, int s, int e)
 {
-    if(s >= e)
+    if (s >= e)
     {
         return 1;
     }
 
-    if(str[s] != str[e])
+    if (str[s] != str[e])
     {
         return 0;
     }
 
-    return checkpall(str , s+1 , e-1);
+    return checkpall(str, s + 1, e - 1);
 }
 
-
-int Vcount(string str , int i)
+int Vcount(string str, int i)
 {
-    if(i == -1)
+    if (i == -1)
     {
         return 0;
     }
 
-    if(str[i] == 'a'|| str[i] == 'e'|| str[i] == 'i'||str[i] == 'o'||str[i] == 'u')
+    if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
     {
-        return 1+Vcount(str , i-1);
+        return 1 + Vcount(str, i - 1);
     }
     else
     {
-        return Vcount(str , i-1);
+        return Vcount(str, i - 1);
     }
 }
 
 // "&str"  string must be passed by reference
-void revstring(string &str , int s , int e)
+void revstring(string &str, int s, int e)
 {
     // base case
-    if(s  >= e)
+    if (s >= e)
     {
-        return ;
+        return;
     }
 
     // swapping function
     char c = str[s];
     str[s] = str[e];
     str[e] = c;
-    
-    revstring(str, s+1 , e-1);
+
+    revstring(str, s + 1, e - 1);
 }
 
 // "&str"  string must be passed by reference
-void LowtoUpp(string &str , int i)
+void LowtoUpp(string &str, int i)
 {
-    if(i == -1)
+    if (i == -1)
     {
-        return ;
+        return;
     }
 
-    str[i] = 'A' + str[i] -'a';
+    str[i] = 'A' + str[i] - 'a';
 
-    LowtoUpp(str , i-1);
-
+    LowtoUpp(str, i - 1);
 }
 
 // "&str"  string must be passed by reference
-void Upptolow(string &str  , int i)
+void Upptolow(string &str, int i)
 {
-    if(i== -1)
+    if (i == -1)
     {
-        return ;
+        return;
     }
 
     str[i] = 'a' + str[i] - 'A';
 
-    Upptolow(str , i-1);
+    Upptolow(str, i - 1);
 }
-
 
 int main()
 {
 
-// Problem (1) - Check Pallindrome 
+    // Problem (1) - Check Pallindrome
 
-string str = "naman";
+    string str = "naman";
 
-cout<<checkpall(str ,0 , 4)<<endl;
+    cout << checkpall(str, 0, 4) << endl;
 
+    // Problem (2) - Count Vowels - all alphabates are in lowercase
 
-// Problem (2) - Count Vowels - all alphabates are in lowercase
+    string str2 = "rohie";
 
-string str2 = "rohie";
+    cout << Vcount(str2, 4) << endl;
+    // here we are pssing last index of str2 as i
 
-cout<<Vcount(str2 , 4 )<<endl;
-// here we are pssing last index of str2 as i
+    // Problem (3) - Reverse a String
+    // here string is passed by reference in function to make changes in main string
 
+    string str3 = "Reverse";
 
-// Problem (3) - Reverse a String
-// here string is passed by reference in function to make changes in main string
+    revstring(str3, 0, 6);
 
-string str3 = "Reverse";
+    cout << str3 << endl;
 
-revstring(str3 , 0 ,6);
+    // Problem (3) - Covert Lowercase string into Uppercase
 
-cout<<str3<<endl;
+    string low_upp = "rohit";
 
+    LowtoUpp(low_upp, 4);
 
-// Problem (3) - Covert Lowercase string into Uppercase
+    cout << low_upp << endl;
 
-string low_upp = "rohit";
+    // **** Homework ****
 
-LowtoUpp(low_upp , 4);
+    // Problrm(1) - convert string in Uppercase to Loercase
 
-cout<<low_upp<<endl;
+    string Upp_low = "ROHIT";
 
+    Upptolow(Upp_low, 4);
 
-// **** Homework ****
-
-// Problrm(1) - convert string in Uppercase to Loercase
-
-string Upp_low = "ROHIT";
-
-Upptolow(Upp_low , 4);
-
-cout<<Upp_low<<endl;
-
+    cout << Upp_low << endl;
 }
